@@ -1,0 +1,85 @@
+content.js 
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "forceRedirect") {
+        if(junkSites.includes(window.location.href)) {
+            const healthySite = healthySites[Math.floor(Math.random () * healthySites.length)]
+            window.location.replace(healthySite)
+        }
+    }
+})
+
+function forceRedirect() {
+if (junkSites.includes(window.location.href)) {
+    const healthySite = healthySites[Math.floor(Math.random() * healthySites.length)]
+    window.location.replace(healthySite)
+}
+}
+
+forceRedirect()
+
+
+
+_______________________________________-
+
+
+popup.js
+
+function suggestHealthySite() {
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        let activeTabUrl = tabs[0].url;
+        console.log(activeTabUrl);
+        urlArray.push(activeTabUrl);
+
+        if (junkSites.includes(activeTabUrl)) {
+            console.log("Junk Site Detected");
+            let healthySite = healthySites[Math.floor(Math.random() * healthySites.length)];
+            chrome.tabs.update({ url: healthySite });
+        } else if (healthySites.includes(activeTabUrl)) {
+            console.log("Healthy site detected! Enjoy your meal!");
+            chrome.tabs.update({ url: activeTabUrl });
+        } else if (!junkSites.includes(activeTabUrl) && !healthySites.includes(activeTabUrl)) {
+            console.log("Site not recognized as junk or healthy. Want a healthy suggestion?");
+        }
+    });
+}
+_______________________________________
+
+options.js
+
+
+
+forceRedirect.addEventListener("click", () => {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        if(!tabs[0].url.startsWith("chrome-extension://")) {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "forceRedirect"})
+        }
+    })
+    choiceValue = "forceRedirect"
+    chrome.storage.sync.set({ choice: choiceValue}, () => {
+        console.log("Value is set to " + choiceValue)
+    })
+}) 
+
+suggestRedirect.addEventListener("click", theOption)
+
+
+function theOption(event) {
+    if( event.target.id === "forceRedirect" ){
+        choiceValue = "forceRedirect"
+        console.log("Force Redirect Clicked")
+
+    }else if(event.target.id === "suggestRedirect"){
+        choiceValue = "suggestRedirect"
+        console.log("Suggest Redirect Clicked")
+
+    }
+chrome.storage.sync.set({ choice: choiceValue }, () => {
+    console.log("Value is set to " + choiceValue);
+})
+}
+
+chrome.storage.sync.get("choice", (data) => {
+    console.log("Value currently is " + data.choice);
+});
+

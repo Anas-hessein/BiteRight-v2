@@ -1,0 +1,40 @@
+{
+"manifest_version": 3,
+"name": "BiteRight — Junk→Healthy Redirector",
+"content_scripts": [
+    {   
+
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+
+    }
+],
+"web_accessible_resources" : [
+    {
+        "resources": ["healthyOr.jpeg"],
+        "matches": ["<all_urls>"]
+    }
+],
+"version": "1.0",
+"description": "Redirect junk-food browsing to healthier, country-aware alternatives. Suggest or force-redirect with categories and playful roasts.",
+"permissions": [
+"storage",
+"declarativeNetRequest",
+"declarativeNetRequestWithHostAccess",
+"tabs"
+],
+"background": {
+    "type": "module", 
+    "service_worker": "background.js"
+},
+"action": {
+"default_title": "BiteRight",
+"default_popup": "popup.html",
+"default_icon" : {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+}
+}
+}
