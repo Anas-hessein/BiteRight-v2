@@ -27,6 +27,72 @@ let healthySites = [
     "https://chefboxeg.com/"
 ]
 
+let suggestEnabled = false
+let forceEnabled = false
+let originalHtml = ''
+let originalHead = ''
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", saveOriginalContent)
+} else {
+    saveOriginalContent()
+}
+
+function saveOriginalContent() {
+    originalHtml = document.body.innerHTML
+    originalHead = document.head.innerHTML
+}
+
+chrome.storage.sync.get(["suggestEnabled", "forceEnabled", "junkSites"]).then((result) => {
+
+    if (result.junkSites) {
+        junkSites = result.junkSites
+        console.log("Loaded saved junk sites:", junkSites)
+    }
+    
+    if (result.suggestEnabled) {
+        suggestEnabled = true
+        suggestOption()
+    }
+    if (result.forceEnabled) {
+        forceEnabled = true
+        forceRedirectOption()
+    }
+})
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    switch (request.action) {
+        case "enableSuggest":
+            suggestEnabled = true
+            suggestOption()
+            sendResponse({ success: true})
+            break
+        case "disableSuggest":
+            suggestEnabled = false
+            restoreOriginalPage()
+            sendResponse({ success: true})
+            break
+        case "enableForce":
+            forceEnabled = true
+            forceRedirectOption()
+            sendResponse({ success: true})
+            break
+        case "disableForce":
+            forceEnabled = false
+            sendResponse({ success: true})
+            break
+        case "updateJunkSites":
+            junkSites = request.junkSites
+            console.log("Updated junk sites list:", junkSites)
+
+            if (suggestEnabled) {
+                suggestOption()
+            }
+            sendResponse({ success: true})
+            break
+    }
+})
+
 let pageHtml = () => {
     let optionsHtml = healthySites.map(site => `<option class="options" value="${site}">${site}</option>`).join('');
     return `
@@ -40,7 +106,7 @@ let pageHtml = () => {
     <body>
         <div id="container"> 
             <h1>🍔🍟 Hold up! Before you indulge in that junk food... 🍕🌭 </h1>
-                <form id="myForm">
+                <form id="myForm">  
                     <select id="selectHealthySite">
                         <option>Choose a healthy site</option>
                         ${optionsHtml}
@@ -114,14 +180,38 @@ let pageCss = () => {
     `
 }
 
-if (junkSites.some(site => window.location.href.startsWith(site))) {
-    document.head.innerHTML = pageCss();
-    document.body.innerHTML = pageHtml();
-    
-    document.getElementById("selectHealthySite").addEventListener("change", function(e) {
-        let url = e.target.value
-        if (url && url !== "Choose a healthy site") {
-            window.location.href = url
-        }
-})
+function suggestOption() {
+        if (junkSites.some(site => window.location.href.startsWith(site))) {
+        document.head.innerHTML = pageCss();
+        document.body.innerHTML = pageHtml();
+        
+        document.getElementById("selectHealthySite").addEventListener("change", function(e) {
+            let url = e.target.value
+            if (url && url !== "Choose a healthy site") {
+                window.location.href = url
+            }
+    })
+    }
 }
+
+function forceRedirectOption() { 
+     if (junkSites.some(site => window.location.href.startsWith(site))) {
+        let randomHealthySite = healthySites[Math.floor(Math.random() * healthySites.length)]
+        window.location.replace(randomHealthySite)
+     }
+
+}
+
+function restoreOriginalPage() {
+    if (originalHtml && originalHead) {
+        document.head.innerHTML = originalHead;
+        document.body.innerHTML = originalHtml;
+    }
+}
+
+
+
+
+
+
+

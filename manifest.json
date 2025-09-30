@@ -16,13 +16,14 @@
         "matches": ["<all_urls>"]
     }
 ],
-"version": "1.0",
+"version": "2.0",
 "description": "Redirect junk-food browsing to healthier, country-aware alternatives. Suggest or force-redirect with categories and playful roasts.",
 "permissions": [
 "storage",
 "declarativeNetRequest",
 "declarativeNetRequestWithHostAccess",
-"tabs"
+"tabs",
+"notifications"
 ],
 "background": {
     "type": "module", 
@@ -35,6 +36,11 @@
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
-}
-}
+    }
+},
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
 }

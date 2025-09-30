@@ -6,13 +6,43 @@
         <link rel="stylesheet" href="popup.css">
         <link rel="manifest" href="manifest.json">
     </head>
- <body>
-    <h1>BiteRight</h1>
-    <button id="options"><a href="options.html" target="_blank">Options</a></button>
-    <button  id="suggest-healthy-site">Suggest Healthy Site</button>
-    <input type="text" id="url-input" placeholder="Enter URL here"></input>
-    <button id="saveLink">Save Link</button>
-    <P id="savedLinks"> </P>
+ <body> 
+
+    <div id="exten-ti"> 
+        
+    </div>
+
+    <input type="checkbox" class="checkbox" id="suggestRedirect"> suggestRedirect </input>
+    <br>
+    <input type="checkbox" class="checkbox" id="forceRedirect"> forceRedirect </input>
+    <br>
+    <div id="customBlocklist">
+        <input type="text" id="junkSitesInput" placeholder="Add junk site url"></input>
+        <button id="addJunkSiteButton">Add</button>
+    </div>  
+    <div id="anas45">
+
+    </div>
+        <p class="subtitle"id="tab-info">Loading...</p>
+            
+            <label>🎯 Global Max Tabs:</label>
+            <input type="number" id="global-limit" min="1"/>
+            
+            <label>💬 Roast Style:</label>
+            <select id="roast-style">
+            <option value="funny">Funny</option>
+            <option value="sarcastic">Sarcastic</option>
+            <option value="motivational">Motivational</option>
+        </select>
+
+        <label><input type="checkbox" id="hard-limit"> Hard Limit Mode (close tabs over limit)</label>
+
+        <button id="save">💾 Save Settings</button>
+        <button id="close-extra" onclick="chngeee()">🗑 Close Tabs Over Limit</button>
+
+        <p id="status"></p>
+    </div>
+
     <script src="popup.js"></script>
  </body>   
 </html>
