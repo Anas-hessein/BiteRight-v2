@@ -1,5 +1,5 @@
 # BiteRight
-Redirect junk-food browsing to healthier, Suggest healther food sites. Not all features works not i wll made it in the next version. its only suggest to you a healthy website with big flag. The popup isn't have any working features rn. BiteRight extensions show you what type of food you should eat to have a healthier life style.
+Redirect junk-food browsing to healthier, Suggest healther food sites. its suggest to you a healthy website with big flag. BiteRight extensions show you what type of food you should eat to have a healthier life style. It has a feature of limiting taps for not overcoming with food orders. 
 # junkfood sites that the extension work on. 
     "https://egypt.burgerking.delivery/",
     "https://www.mcdelivery.eg/eg/",
@@ -21,6 +21,9 @@ Redirect junk-food browsing to healthier, Suggest healther food sites. Not all f
 <img width="128" height="128" alt="icon128" src="https://github.com/user-attachments/assets/70005bb9-bae7-4ab1-92df-7d075aa0a5d5" />
 
 # Apperance
+<img width="310" height="612" alt="Screenshot 2025-09-30 235330" src="https://github.com/user-attachments/assets/5b91a48d-0d27-4c79-b567-cf7f50267ba4" />
+<img width="310" height="612" alt="Screenshot 2025-09-30 235330" src="https://github.com/user-attachments/assets/505762c2-3a8f-4a27-a0eb-4446aaef74dc" />
+
 <img width="1366" height="728" alt="Screenshot 2025-09-27 110752" src="https://github.com/user-attachments/assets/5808719d-2e84-49bd-838d-33c58d47ee8b" />
 <img width="1366" height="716" alt="Screenshot 2025-09-27 110810" src="https://github.com/user-attachments/assets/cada6f18-7ab2-4c63-9a1f-b33d4dc43f0b" />
 
