@@ -21,8 +21,9 @@ Redirect junk-food browsing to healthier, Suggest healther food sites. its sugge
 <img width="128" height="128" alt="icon128" src="https://github.com/user-attachments/assets/70005bb9-bae7-4ab1-92df-7d075aa0a5d5" />
 
 # Apperance
-<img width="310" height="612" alt="Screenshot 2025-09-30 235330" src="https://github.com/user-attachments/assets/5b91a48d-0d27-4c79-b567-cf7f50267ba4" />
 <img width="310" height="612" alt="Screenshot 2025-09-30 235330" src="https://github.com/user-attachments/assets/505762c2-3a8f-4a27-a0eb-4446aaef74dc" />
+<img width="312" height="603" alt="Screenshot 2025-09-30 235307" src="https://github.com/user-attachments/assets/74a0ef60-53ac-42d6-8c8c-0565f6ef9e41" />
+
 
 <img width="1366" height="728" alt="Screenshot 2025-09-27 110752" src="https://github.com/user-attachments/assets/5808719d-2e84-49bd-838d-33c58d47ee8b" />
 <img width="1366" height="716" alt="Screenshot 2025-09-27 110810" src="https://github.com/user-attachments/assets/cada6f18-7ab2-4c63-9a1f-b33d4dc43f0b" />
